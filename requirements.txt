@@ -1,0 +1,8 @@
+gym
+gym[atari]
+numpy
+matplotlib
+torch
+tensorflow==1.15.5
+jupyterlab
+stable-baselines[mpi]
