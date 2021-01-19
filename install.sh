@@ -12,3 +12,8 @@ chmod u+x ./anaconda.sh
 
 # install torch
 ~/anaconda3/bin/conda install -n py38-test pytorch
+
+source activate py38-test
+
+# install gym
+pip install gym
