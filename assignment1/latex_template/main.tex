@@ -1,0 +1,181 @@
+\documentclass[12pt,
+               addpoints,
+	       answers
+               ]{exam}
+\usepackage[english]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{epsfig, graphics}
+\usepackage{latexsym}
+\usepackage[parfill]{parskip}
+\usepackage{url}
+\usepackage{titlesec}
+% \usepackage{mysymbols}
+\usepackage{tikz}
+\usepackage{fancyvrb} % for "\Verb" macro
+
+% ~ additional packages ~
+\usepackage{booktabs} % fancy tables
+\usepackage{caption} % captionof
+\usepackage{comment}
+%\usepackage{listings} % python code
+\usepackage{xcolor}
+\usepackage{listings}
+%\usepackage{exsheets}
+
+
+\lstset{
+frame=single,
+xleftmargin=20pt,
+numbers=left,
+numberstyle=\small,
+tabsize=2,
+breaklines,
+showspaces=false,
+showstringspaces=false,
+language=C,
+basicstyle=\small\ttfamily,
+commentstyle=\itshape\color{gray}}
+\newsavebox\myboxa
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Name:  }
+{}
+{28.07.2020}
+\runningfooter{}
+{\thepage\ of \numpages}
+{}
+
+\renewcommand{\thesection}{\Roman{section}}
+\CorrectChoiceEmphasis{\bfseries}
+
+\titleformat*{\section}{\large\bfseries}
+
+\pointsinrightmargin
+
+\author{Matthew Zhang, Claas Voelcker, Prof. Animesh Garg}
+\title{CSC 498: Assignment 1}
+\date{Released: Wed 01/27/2021 -- Due: Wed 02/11/2021}
+
+\begin{document}
+	\maketitle
+	
+	Name, First Name: \hrulefill % TODO: replace with your name
+	
+    Student number: \hrulefill % TODO: replace with your name
+
+    Total points: 50 + 20 bonus
+	\vspace{1cm}
+	
+	To complete the exercise, you can use the tex template provided in the materials github. Insert your answers into the solution space below each question. In case you are unfamiliar with Latex, you may also submit handwritten solutions, but make sure they are clean and legible.
+
+Submit the exercise before 23:59 pm on the due date on quercus. To submit, please bundle your completed exercise sheet, your jupyter notebook and any material for the bonus task into one zip file. Name the zip file \verb"studentnumber_lastname_firstname.zip" and upload it on quercus. 
+
+Each student will have 3 grace days throughout the semester for late assignment submissions. Late submissions that exceed those grace days will lose 33\% of their value for every late day beyond the allotted grace days. Late submissions that exceed three days of delay after the grace days have been used will unfortunately not be accepted. The official policy of the Registrar’s Office at UTM regarding missed exams can be found here \url{https://www.utm.utoronto.ca/registrar/current-students/examinations}. If you have a compelling reason for missing the deadline, please contact the course staff as soon as possible to discuss hand in.
+
+For assignment questions, please use Piazza and the office hours, but refrain from posting complete or partial solutions.
+
+\newpage
+
+\vspace{2cm}
+
+\section{Theoretical background}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imgs/simple_chain_mdp.png}
+    \caption{Chain-walk MDP}
+\end{figure}
+
+
+\begin{questions}
+    \question[10]{
+        \textit{Chain-walk MDP}
+        
+        Consider a simple 5-state MDP shown in the Figure 1. The agent starts at state $s_1$, and has two actions available in each of the states $s_i$, with reward $0$. Taking any action from state $S_{-1}$ or $S_4$ results in a reward $r>0$ and the agent stays in the state. The actions are deterministic and always succeed. Assume a discount factor $\gamma < 1$. 
+        
+        \begin{enumerate}
+            \item Compute the optimal values for each state with a discount of $\gamma = 0.9$. Show the equations and any simplifications so we can follow your reasoning. (3)
+            \item What are the optimal actions at states $s_i$ given $\gamma = 0.9$? (3) 
+            \item Does the optimal policy depend on the discount factor $\gamma$? What happens if it changes? Describe, in your own words, what the factor $\gamma$ represents. (4)
+        \end{enumerate}
+
+        \begin{solution}[0.5cm]
+	%TODO your solution here
+        \end{solution}}
+    
+    \question[10]{
+        \textit{Runtime comparison}
+    
+        \begin{enumerate}
+            \item Compare the runtime of a single step of VI and PI. State your results in asymptotic notation, in terms of the size of the state space $\mathcal{S}$ and the size of the action space $\mathcal{A}$ (assume both are finite). (5)
+            \item Based on this, can you easily state whether PI or VI will be faster for any MDP? If yes, show the derivation, if no, argue why not. (5)
+        \end{enumerate}
+        \begin{solution}[0.5cm]
+	%TODO your solution here
+        \end{solution}}
+\end{questions}
+
+\section{Coding assignment}
+    For the coding questions, provide your solutions by filling and uploading the jupyter notebook for the exercise. Make sure to only change code where we have marked the notebook with ??? and to only provide additional comments within the provided cells.
+
+
+\begin{questions}
+
+    \question[0]{
+    \textit{Setup}
+
+        To start, download all necessary code from github for assignment 1 from \url{https://github.com/pairlab/csc498-material}. Set up your Python environment and make sure you can run jupyter.
+        
+        Run first section of the jupyter notebook assignment1.ipynb (This requires you to run all cells within Assignment 1, Task 1).
+        \begin{solution}[0.5cm]
+        \end{solution}}
+
+    \question[10]{
+    \textit{Implement VI}
+        Task 2 contains scaffolding code for a VI agent. Replace all blocks marked with ??? with your own code. You need to code the policy update and policy evaluation steps.
+        \begin{solution}[0.5cm]
+        \end{solution}}
+
+    \question[10]{
+    \textit{Implement PI}
+
+        As before, you need to extend the code provided in the notebook, this time for a Policy iteration agent. In the marked cell below the code, quickly describe the difference between value iteration and policy iteration.
+        \begin{solution}[0.5cm]
+        \end{solution}}
+    
+    \question[10]{
+    \textit{Runtime tests with VI and PI}
+
+        After you have implemented both agents, compare the runtimes of the agents using the provided code and by varying the state and action space of the randomly generated environment. Do the results match your results from section 1?
+        \begin{solution}[0.5cm]
+        \end{solution}}
+
+\end{questions}
+
+\section{Bonus challenge}
+The assignment will include a bonus question. These are meant as additional challenges for highly motivated students and require either prior knowledge or some independent learning. You will be able to get full points in all exercises without these questions, but we strongly encourage you to at least try to complete them. The bonus points will improve your final exercise score in the final grade calculations.
+
+For each of the bonus questions, we will only provide minimal guidance and a high level task description. This means you are strongly encouraged to play around, think about different strategies and discuss your findings in your submission. Upload a description of your solution and relevant code alongside your submission.
+
+\begin{questions}
+    \question[20]{
+        \textit{Model based pendulum swingup}
+        
+        In the bonus task, you will tackle a more complex problem using value iteration and policy iteration. You will be using the OpenAI gym environment "Pendulum-v0".
+        
+        In the first step, you need to train a model of the environment using 50,000 samples. To obtain these, you should execute random actions in the environment and reset once the done signal is returned. You may use sklearn or torch for this, you do not need to implement your own ML model. The model should predict the next timestep and reward given the last observation.
+        
+        Next, you need to discretize the state and action space to use and policy iteration or value iteration approach. You are free to use any strategies here, there are no bounds on your creativity (except your hardware limitations). We do suggest to start simple though.
+        
+        Using your model and the discretization, produce a tabular MDP for the Pendulum swingup task and run your VI or PI agent. You may reuse code from the exercise for this step and it is a good idea to stick closely to the interfaces used in the previous task.
+
+        Finally, evaluate your agent using at least 16 independent runs of the original environment. Does the final reward align with the estimated value function of your agent? Are there failure cases and can you explain these? We expect the whole code to run in under 15 minutes.
+        
+        To obtain full points, we expect clean code, a small written report containing a short discussion of your choice of ML model, your discretization scheme and a graph of reward over time steps showing the mean and standard deviation over all your runs. In addition, please add a small discussion of the final results. Please provide your code and all written parts together in form of a single jupyter notebook.
+        \begin{solution}[0.5cm]
+	%TODO your solution here
+        \end{solution}}
+\end{questions}
+
+\end{document}
