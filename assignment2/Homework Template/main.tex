@@ -1,0 +1,200 @@
+\documentclass[12pt,
+               addpoints,
+	       answers
+               ]{exam}
+\usepackage[english]{babel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{epsfig, graphics}
+\usepackage{latexsym}
+\usepackage[parfill]{parskip}
+\usepackage{url}
+\usepackage{titlesec}
+% \usepackage{mysymbols}
+\usepackage{tikz}
+\usepackage{fancyvrb} % for "\Verb" macro
+
+% ~ additional packages ~
+\usepackage{booktabs} % fancy tables
+\usepackage{caption} % captionof
+\usepackage{comment}
+%\usepackage{listings} % python code
+\usepackage{xcolor}
+\usepackage{listings}
+%\usepackage{exsheets}
+
+
+\lstset{
+frame=single,
+xleftmargin=20pt,
+numbers=left,
+numberstyle=\small,
+tabsize=2,
+breaklines,
+showspaces=false,
+showstringspaces=false,
+language=C,
+basicstyle=\small\ttfamily,
+commentstyle=\itshape\color{gray}}
+\newsavebox\myboxa
+
+\pagestyle{headandfoot}
+\runningheadrule
+\runningheader{Name:  }
+{}
+{03.02.2021}
+\runningfooter{}
+{\thepage\ of \numpages}
+{}
+
+\renewcommand{\thesection}{\Roman{section}}
+\CorrectChoiceEmphasis{\bfseries}
+
+\titleformat*{\section}{\large\bfseries}
+
+\pointsinrightmargin
+
+\author{Matthew Zhang, Claas Voelcker, Prof. Animesh Garg}
+\title{CSC 498: Assignment 2}
+\date{Released: Tues 03/02/2021 -- Due: Wed 03/17/2021}
+
+\begin{document}
+	\maketitle
+	
+	Name, First Name: \hrulefill % TODO: replace with your name
+	
+    Student number: \hrulefill % TODO: replace with your name
+
+    Total points: 60 + 20 bonus
+	\vspace{1cm}
+	
+	To complete the exercise, you can use the tex template provided in the materials github. Insert your answers into the solution space below each question. In case you are unfamiliar with Latex, you may also submit handwritten solutions, but make sure they are clean and legible.
+
+Submit the exercise before 23:59 pm on the due date on quercus. To submit, please bundle your completed exercise sheet, your jupyter notebook and any material for the bonus task into one zip file. Name the zip file \verb"studentnumber_lastname_firstname.zip" and upload it on quercus. 
+
+Each student will have 3 grace days throughout the semester for late assignment submissions. Late submissions that exceed those grace days will lose 33\% of their value for every late day beyond the allotted grace days. Late submissions that exceed three days of delay after the grace days have been used will unfortunately not be accepted. The official policy of the Registrar’s Office at UTM regarding missed exams can be found here \url{https://www.utm.utoronto.ca/registrar/current-students/examinations}. If you have a compelling reason for missing the deadline, please contact the course staff as soon as possible to discuss hand in.
+
+For assignment questions, please use Piazza and the office hours, but refrain from posting complete or partial solutions.
+
+\newpage
+
+\vspace{2cm}
+
+\section{Policy Evaluation}
+    Consider the chain-walk MDP, which can be found in the Assignment PDF. Now suppose the agent currently estimates the value of each state to be $0$. Then, the agent observes the following sequence of states and rewards:
+    
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{c|c|c|c}
+            \textbf{Time} & \textbf{State} & \textbf{Action} & \textbf{Reward} \\
+            \hline 1 & $S_{0}$ & $A_{1}$ & -1 \\
+            2 & $S_{-1}$ & $A_{1}$ & +1 \\
+            3 & $S_{0}$ & $A_{1}$ & +1 \\
+            4 & $S_{1}$ & $A_{1}$ & +5\\
+            5 & $S_{2}$ & N/A & N/A \\
+        \end{tabular}
+        \caption{Observed sequence of states, rewards and actions}
+        \label{tab:my_label}
+    \end{table}
+\begin{questions}
+
+    \question[5]{
+        \textit{First-Visit Monte Carlo}
+        
+        What is the first visit Monte Carlo estimate of $V$ at each state? What is the \textit{incremental} first visit Monte Carlo estimator of $V$ at each state, with $\alpha = \frac{1}{2}?$
+
+        \begin{solution}[0.5cm]
+        \end{solution}}
+        
+    \question[5]{
+        \textit{Every-Visit Monte Carlo}
+        
+        What is the every-visit Monte Carlo estimate of $V$ at each state? What is the \textit{incremental} every-visit Monte Carlo estimator of $V$ at each state, with $\alpha = \frac{1}{2}?$
+
+        \begin{solution}[0.5cm]
+        \end{solution}}
+\end{questions}
+
+\section{Q-Learning}
+    For the coding questions, provide your solutions by filling and uploading the jupyter notebook for the exercise. Make sure to only change code where we have marked the notebook with ??? and to only provide additional comments within the provided cells. Note that the environments are randomly generated; if you feel like your performance does not match with expectations, you can freely generate more environments for testing.
+
+\begin{questions}
+
+    \question[3]{
+    \textit{Hand Derived Q-Learning}
+    
+        Consider the same MDP in Q1, and the same data observed in Table \ref{tab:my_label}. Perform a single step of the Q-learning algorithm with $\alpha = 1$, if the initial values are $Q(s,a) = 0$ for all $s,a$.
+        \begin{solution}[0.5cm]
+        \end{solution}}
+        
+    \question[10]{
+    \textit{Implement Q-Learning}
+    
+        To start, download all necessary code from github for assignment 2 from \url{https://github.com/pairlab/csc498-material}. Set up your Python environment and make sure you can run jupyter.
+        
+        Run the first section of the jupyter notebook assignment2.ipynb (This requires you to run all cells within Assignment 2, Task 2).
+    
+        Task 2 contains scaffolding code for an (exact) Q-Learning agent. In the code cell provided in the notebook, please replace the sections marked $???$ with your own code. Your agent should be able to find a solution that is roughly optimal. \textbf{(Do not fill in anything here; fill in the code blocks in the notebook file)}}
+
+
+    \question[7]{
+    \textit{$\epsilon$-Greedy Exploration}
+    
+        Often in reinforcement learning, we want to encourage our agent to take non-optimal actions in order to obtain more information about the environment. This is referred to as "exploration". One scheme is $\epsilon$-Greedy exploration, which chooses a random action $a \sim Unif(A)$ with probability $1-\epsilon$, and otherwise chooses the action $a = \arg\min Q(s,a)$ with the highest $Q$-value (ties can be broken arbitrarily).
+        
+        Add a parameter $\epsilon$ into your agent, which controls the level of $\epsilon$-Greedy exploration. Run your algorithm for $\epsilon = 1.0, 0.9, 0.8, 0.5,$ and report the performances. Intuitively, when might we prefer to use a higher $\epsilon$ (i.e. $\epsilon$ close to $1$), and when might we prefer a lower $\epsilon$ (i.e. $\epsilon$ close to $0$)? \textbf{(Please add your written} \textbf{(Only add the qualitative discussion below; do not put code here)}
+        
+        \begin{solution}[0.5cm]
+        \end{solution}}
+
+\end{questions}
+
+\section{TD-Learning}
+\begin{questions}
+    \question[10]{
+    \textit{Implement TD(0) Learning}
+    
+        Run the second section of the jupyter notebook assignment2.ipynb.
+        
+        Task 3 contains scaffolding code for a simple TD(0) agent. In the code cell provided in the notebook, please replace the sections marked $???$ with your own code. Your agent should be able to find a solution that is roughly optimal.
+    }
+    
+    \question[10]{
+    \textit{TD(n) Learning}
+        
+        It is possible to do TD learning using not just the next state, but $n$ observations into the future, with the following update rule:
+        \begin{equation}
+            \hat{V}_(s_t) \gets \hat{V}(s_t) + \alpha \left(\gamma^{n+1} \hat{V}(s_{t+n}) - \hat{V}{s_t} + \sum_{i=0}^{n} \gamma^i r(s_{t+i}, a_{t+i}) \right)
+        \end{equation}
+        Please introduce an additional parameter $N_{steps}$ into your algorithm, which will implement this algorithm with $n = N_{steps}$. Then, run this algorithm for $n=0,1,2,5$ and report the performances. What might the benefits/drawbacks of this approach be? \textbf{(Only include qualitative discussion below; do not put code here)}
+        
+        \begin{solution}[0.5cm]
+        \end{solution}
+    }
+\end{questions}
+
+\section{Bonus challenge}
+The assignment will include a bonus question. These are meant as additional challenges for highly motivated students and require either prior knowledge or some independent learning. You will be able to get full points in all exercises without these questions, but we strongly encourage you to at least try to complete them. The bonus points will improve your final exercise score in the final grade calculations.
+
+For each of the bonus questions, we will only provide minimal guidance and a high level task description. This means you are strongly encouraged to play around, think about different strategies and discuss your findings in your submission. Upload a description of your solution and relevant code alongside your submission.
+
+\begin{questions}
+    \question[20]{
+        \textit{Mountain-Car Q-Learning}
+        
+        In the bonus task, you will tackle a more complex problem using value iteration and policy iteration. You will be using the OpenAI gym environment "Mountaincar-v0" (not to be confused with MontaincarContinuous-v0, which is similar but unsuitable for Q-learning).
+        
+        In the first step, you need to train a model of the environment using 50,000 samples. To obtain these, you should execute random actions in the environment and reset once the done signal is returned. You may use sklearn or torch for this, you do not need to implement your own ML model. The model should predict the next timestep and reward given the last observation.
+        
+        Next, you need to discretize the action space to use a Q-learning approach. You are free to use any strategies here, there are no bounds on your creativity (except your hardware limitations). We do suggest to start simple though.
+        
+        Using your model and the discretization, you can either discretize the state space and perform tabular Q-learning, or use a function approximation model in order to learn features.
+
+        Finally, evaluate your agent using at least 16 independent runs of the original environment. Does the final reward align with the estimated value function of your agent? Are there failure cases and can you explain these? We expect the whole code to run in under 15 minutes.
+        
+        To obtain full points, we expect clean code, a small written report containing a short discussion of your choice of ML model, your discretization scheme and a graph of reward over time steps showing the mean and standard deviation over all your runs. In addition, please add a small discussion of the final results. Please provide your code and all written parts together in form of a single jupyter notebook.
+        \begin{solution}[0.5cm]
+        \end{solution}}
+\end{questions}
+
+\end{document}
